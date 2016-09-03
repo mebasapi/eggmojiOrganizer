@@ -1,0 +1,102 @@
+html { height: 100%; }
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #eeeeee;
+
+  header {
+    // height: 100px;
+    width: 100%;
+    border-bottom: 1px solid #979797;
+    background-color: #FFFFFF;
+    .container {
+      height: 100%;
+      padding: 5px 0;
+      .title-content {
+        #page-title {
+          text-align: center;
+          color: #000000;
+          font-size: 24px;
+          line-height: 50px;
+        }
+      }
+    }
+  }
+
+  > div {
+    height: 100%;
+  }
+
+  .add.fab {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+  }
+
+  #overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    #blackbg {
+      width:100%;
+      height:100%;
+      position: absolute;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .image-container {
+      width: 40%;
+      height: 400px;
+      margin: 100px auto;
+      background-color: white;
+      text-align: center;
+      position: relative;
+      border-radius: 3px;
+
+      img {
+        height: 360px;
+        width: auto;
+      }
+      .buttons {
+        height: 40px;
+        padding: 5px;
+        background-color: lightgrey;
+        text-align: left;
+
+        a {
+          padding: 0 10px;
+          height: 30px;
+          line-height: 30px;
+        }
+      }
+    }
+  }
+
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+}

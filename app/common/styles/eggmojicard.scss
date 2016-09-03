@@ -1,0 +1,207 @@
+#eggmojis-nav {
+  width: 100%;
+  background-color: #562A72;
+  text-align: center;
+  a {
+    padding: 0px 10px;
+    line-height: 35px;
+    font-size: 18px;
+    font-weight: 300;
+    color: #FFFFFF;
+    cursor: pointer;
+
+    &.active {
+      text-decoration: underline;
+    }
+  }
+}
+
+.eggmojis-container {
+  width: 100%;
+  overflow:auto;
+  margin: 20px 0 10px;
+
+  .selected-eggmoji {
+    width: 96%;
+    margin: 0 auto 20px;
+    background-color: #FFFFFF;
+    padding: 25px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow:auto;
+
+    div {
+      float:left;
+
+      &.left {
+        width: 35%;
+
+        input {
+          border: 1px solid #888888;
+          border-radius: 3px;
+          font-size: 20px;
+          width: 100%;
+          margin-bottom: 0;
+        }
+
+        .status-container {
+          margin:20px 0;
+
+          a {
+            padding: 5px 10px;
+            background-color: #787878;
+            color: #fff;
+            border-radius: 3px;
+
+            &:hover {
+              cursor: pointer;
+            }
+
+            &.active {
+              background-color: #338A2E;
+            }
+          }
+        }
+
+        .current-picture-container {
+          width: 100%;
+          height: 300px;
+          border-radius: 3px;
+          text-align: center;
+
+          &.empty {
+            border: 1px dashed #888888;
+            background-color: #dfdfdf;
+          }
+
+          img {
+            height: 100%;
+            width: auto;
+            border: 1px solid #bcbcbc;
+            border-radius: 2px;
+          }
+
+        }
+      }
+
+      &.right {
+        width: 55%;
+        margin: 0 5%;
+
+        div {
+          width: 100%;
+
+          &.pictures-container {
+            border: 1px solid #888888;
+            border-radius: 3px;
+            background-color: #dfdfdf;
+            margin-bottom: 20px;
+            height: 170px;
+            overflow: scroll;
+            position: relative;
+
+            .picture {
+              height: 150px;
+              width: auto;
+              margin: 10px;
+
+              img {
+                height: 100%;
+                width: auto;
+              }
+            }
+
+            .inputfile {
+            	width: 0.1px;
+            	height: 0.1px;
+            	opacity: 0;
+            	overflow: hidden;
+            	position: absolute;
+            	z-index: -1;
+            }
+
+            .inputfile + label {
+              font-size: 14px;
+              color: white;
+              display: inline-block;
+              position: absolute;
+              bottom: 15px;
+              right: 15px;
+            }
+          }
+
+          textarea {
+            border: 1px solid #888888;
+            border-radius: 3px;
+            width: 100%;
+            min-height: 100px;
+          }
+
+          &.buttons {
+            margin-top:15px;
+            text-align: right;
+
+            a {
+              padding: 5px 10px;
+              background-color: #338A2E;
+              color: #fff;
+              border-radius: 3px;
+
+              &:hover {
+                cursor: pointer;
+              }
+
+              &.delete-eggmoji {
+                background-color: #A8383B;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 20px;
+      height: 20px;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  .eggmoji-card {
+    float: left;
+    width: 16%;
+    height: 200px;
+    margin: 0 2% 20px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+    .current-picture-container {
+      width: 100%;
+      height: 150px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: auto;
+        vertical-align: middle;
+      }
+    }
+    .eggmoji-title {
+      width: 100%;
+      padding: 5px;
+      height:50px;
+      border-top: 1px solid #ababab;
+    }
+  }
+}

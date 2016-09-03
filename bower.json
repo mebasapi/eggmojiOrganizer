@@ -1,0 +1,68 @@
+{
+  "name": "eggmojiOrganizer",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.5.6",
+    "angular-route": "^1.5.6",
+    "angular-sanitize": "^1.5.6",
+    "jquery": "2.1.4",
+    "bootstrap": "3.3.5",
+    "angular-animate": "^1.5.6",
+    "angular-resource": "^1.5.6",
+    "font-awesome": "^4.6.1",
+    "angularfire": "^2.0.1",
+    "angular-base64-upload": "^0.1.19",
+    "materialize": "^0.97.7",
+    "moment": "momentjs#^2.14.1"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "./dist/css/bootstrap.min.css",
+        "./dist/css/bootstrap-theme.min.css",
+        "./dist/css/bootstrap.css.map"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "./css/font-awesome.min.css"
+      ]
+    },
+    "angular": {
+      "main": [
+        "./angular.min.js"
+      ]
+    },
+    "angular-animate": {
+      "main": [
+        "./angular-animate.min.js"
+      ]
+    },
+    "angular-route": {
+      "main": [
+        "./angular-route.min.js"
+      ]
+    },
+    "angular-resource": {
+      "main": [
+        "./angular-resource.min.js"
+      ]
+    },
+    "angular-sanitize": {
+      "main": [
+        "./angular-sanitize.min.js"
+      ]
+    },
+    "jquery": {
+      "main": [
+        "./dist/jquery.min.js"
+      ]
+    }
+  },
+  "resolutions": {
+    "angular": "1.5.6"
+  },
+  "devDependencies": {
+    "angularfire": "^2.0.1"
+  }
+}

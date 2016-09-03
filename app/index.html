@@ -1,0 +1,56 @@
+<!doctype html>
+<html ng-app="eggmojiOrganizer">
+
+    <head>
+        <meta charset="utf-8"/>
+
+        <title>Eggmoji Organizer</title>
+
+        <!-- bower:js -->
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="bower_components/firebase/firebase.js"></script>
+        <script src="bower_components/angular-base64-upload/src/angular-base64-upload.js"></script>
+        <script src="bower_components/materialize/bin/materialize.js"></script>
+        <script src="bower_components/angularfire/dist/angularfire.js"></script>
+        <!-- endinject -->
+
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css">
+        <!-- endinject -->
+
+        <!-- inject:js -->
+        <script src="app.js"></script>
+        <script src="components/eggmojis/eggmojis.controller.js"></script>
+        <script src="common/directives/eggmojiCard.directive.js"></script>
+        <script src="common/directives/myHeader.directive.js"></script>
+        <script src="common/services/eggmojiFirebase.service.js"></script>
+        <script src="common/services/status.filter.js"></script>
+        <!-- endinject -->
+
+        <!-- inject:css -->
+        <link rel="stylesheet" href="css/common/styles/eggmojicard.css">
+        <link rel="stylesheet" href="css/common/styles/feature.css">
+        <link rel="stylesheet" href="css/common/styles/main.css">
+        <link rel="stylesheet" href="css/bower_components/font-awesome/scss/font-awesome.css">
+        <!-- endinject -->
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <script>
+            document.write('<base href="' + document.location + '" />');
+        </script>
+    </head>
+
+    <body>
+        <my-header></my-header>
+        <div ng-view></div>
+    </body>
+</html>

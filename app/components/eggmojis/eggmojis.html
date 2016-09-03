@@ -1,0 +1,72 @@
+<div id="eggmojis-nav">
+  <a ng-class="{ 'active': pageStatus === 'unstarted' }" ng-click="updatePageStatus('unstarted')">Unstarted</a>
+  <a ng-class="{ 'active': pageStatus === 'inprogress' }" ng-click="updatePageStatus('inprogress')">In Progress</a>
+  <a ng-class="{ 'active': pageStatus === 'completed' }" ng-click="updatePageStatus('completed')">Completed</a>
+</div>
+
+<div class="eggmojis-container">
+
+  <div class="selected-eggmoji" ng-if="selectedEggmojiId !== ''">
+    <div class="left">
+      <input ng-model="selectedEggmoji.title" ng-blur="updateEggmoji(selectedEggmojiId, selectedEggmoji)"></input>
+      <a class="close-button" ng-click="clearSelectedEggmoji()"><img src="/img/close.png"/></a>
+      <div class="status-container">
+        <a ng-class="{ 'active': pageStatus === 'unstarted' }" ng-click="updateStatus('unstarted')">Unstarted</a>
+        <a ng-class="{ 'active': pageStatus === 'inprogress' }" ng-click="updateStatus('inprogress')">In Progress</a>
+        <a ng-class="{ 'active': pageStatus === 'completed' }" ng-click="updateStatus('completed')">Completed</a>
+      </div>
+
+      <div class="current-picture-container" ng-class="{'empty': selectedEggmoji.currentPicture < 0}">
+        <img ng-if="selectedEggmoji.currentPicture >= 0" ng-src="{{selectedEggmoji.pictures[selectedEggmoji.currentPicture]}}"/>
+      </div>
+    </div>
+
+    <div class="right">
+
+      <div class="pictures-container">
+        <div class="picture" ng-repeat="picture in selectedEggmoji.pictures | orderBy:'$index':true track by $index ">
+          <img ng-src="{{picture}}" ng-click="pictureClicked(selectedEggmoji.pictures.length - $index - 1)"/>
+        </div>
+        <input
+          type="file"
+          id="zeFiles"
+          class="inputfile"
+          ng-model="imageToUpload"
+          base-sixty-four-input
+          on-after-validate="addPictureToSelectedEggmoji"
+          required></input>
+        <label class="waves-effect waves-light btn add fab" for="zeFiles">Add Picture</label>
+      </div>
+      <div class="description-container">
+        <label>Description</label>
+        <textarea ng-model="selectedEggmoji.description"></textarea>
+      </div>
+
+      <div class="buttons">
+        <!-- <a class="delete-eggmoji" ng-click="deleteEggmoji(selectedEggmojiId)" ng-if="!showSaveButton">Delete</a> -->
+        <a class="save-emoji" ng-click="addEggmoji(selectedEggmoji)" ng-if="showSaveButton">Save</a>
+      </div>
+    </div>
+  </div>
+
+  <eggmoji-card
+    status="pageStatus"
+    data-id="id"
+    data-eggmoji="eggmoji"
+    ng-repeat="(id, eggmoji) in eggmojis"
+    ng-if="eggmoji.status === pageStatus">
+  </eggmoji-card>
+</div>
+
+<a ng-click="newEggmojiClicked()" class="btn-floating btn-large waves-effect waves-light red add fab"><i class="material-icons">add</i></a>
+
+<div id="overlay" ng-show="viewOverlayPicture">
+  <div id="blackbg" ng-click="overlayClicked()"></div>
+  <div class="image-container">
+    <img ng-src="{{overlayPictureSrc}}"/>
+    <div class="buttons">
+      <a ng-click="overlayDeletePicture()" class="btn waves-effect waves-light red">Delete Picture</a>
+      <a ng-click="overlayMakeFeaturedPicture()" class="btn waves-effect waves-light green">Make Featured Picture</a>
+    </div>
+  </div>
+</div>
