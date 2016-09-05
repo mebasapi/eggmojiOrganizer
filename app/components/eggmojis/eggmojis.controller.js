@@ -109,9 +109,12 @@
       $scope.selectedEggmoji = $rootScope.selectedEggmoji;
     });
 
+    $rootScope.$on('userUpdated', function() {
+      $scope.user = eggmojiFirebase.getUser();
+    });
+
     function init() {
       $scope.user = eggmojiFirebase.getUser();
-      console.log($scope.user);
 
       $scope.pageStatus = 'unstarted';
       $scope.selectedEggmojiId = '';

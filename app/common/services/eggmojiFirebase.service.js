@@ -28,14 +28,10 @@
 
     firebase.auth().getRedirectResult().then(function(result) {
       user = auth.currentUser;
-      $rootScope.$apply();
+      $rootScope.$emit('userUpdated');
     }).catch(function(error) {
       console.log(error);
     });
-
-    // firebase.auth().onAuthStateChanged(user, function(error) {
-    //   console.log(error);
-    // });
 
     eggmojiFirebase.getUser = function() {
       user = auth.currentUser;
