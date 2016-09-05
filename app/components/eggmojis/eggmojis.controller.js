@@ -1,6 +1,13 @@
 (function() {
   'use strict';
   app.controller('eggmojisCntl', ['$scope', '$rootScope', '$timeout', 'eggmojiFirebase', function($scope, $rootScope, $timeout, eggmojiFirebase) {
+    $scope.login = function() {
+      $scope.loggingIn = true;
+
+      eggmojiFirebase.login();
+      $scope.user = eggmojiFirebase.getUser();
+    };
+
     $scope.newEggmojiClicked = function() {
       $scope.selectedEggmojiId = 'new';
       $scope.selectedEggmoji = {
@@ -71,7 +78,6 @@
 
       if( $scope.selectedEggmoji.currentPicture === $scope.overlayPictureIndex){
         $scope.selectedEggmoji.currentPicture = $scope.selectedEggmoji.pictures.length - 1;
-        console.log($scope.selectedEggmoji.currentPicture);
       }
 
       $scope.updateEggmoji($scope.selectedEggmojiId, $scope.selectedEggmoji);
@@ -104,6 +110,10 @@
     });
 
     function init() {
+      console.log('balls');
+      $scope.user = eggmojiFirebase.getUser();
+      console.log($scope.user);
+
       $scope.pageStatus = 'unstarted';
       $scope.selectedEggmojiId = '';
       $scope.imageToUpload = {};

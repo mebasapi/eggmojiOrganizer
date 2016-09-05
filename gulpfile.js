@@ -83,11 +83,11 @@ gulp.task('styles', ['clean'], function() {
         }))
         .pipe(gulp.dest('app/css/')).pipe(gulp.dest('dist/css/'));
 
-    // Get our index.html
-    gulp.src(['app/bower_components/**/*.css', 'app/bower_components/**/*.woff*'])
-        // And put it in the dist folder
+    gulp.src(['app/bower_components/**/*.woff*'])
         .pipe(gulp.dest('dist/bower_components'));
 
+    gulp.src(['app/bower_components/**/*.css'])
+        .pipe(gulp.dest('dist/css/bower_components'));
 });
 
 // Views task
@@ -113,6 +113,9 @@ gulp.task('js', ['clean'], function() {
     gulp.src('app/common/**/*.js').pipe(gulp.dest('dist/common'));
     gulp.src('app/components/**/*.js').pipe(gulp.dest('dist/components'));
     gulp.src('app/bower_components/**/*.min.js').pipe(gulp.dest('dist/bower_components'));
+    gulp.src('app/bower_components/**/*.min.js.map').pipe(gulp.dest('dist/bower_components'));
+    gulp.src('app/bower_components/**/*.css').pipe(gulp.dest('dist/bower_components'));
+    gulp.src('app/bower_components/**/*.js').pipe(gulp.dest('dist/bower_components'));
 });
 
 gulp.task('watch', ['lint'], function() {

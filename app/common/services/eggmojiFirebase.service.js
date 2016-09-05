@@ -1,43 +1,56 @@
 (function() {
-    'use strict';
-    app.service('eggmojiFirebase', ['$rootScope', '$firebaseAuth', '$firebaseObject', function EggmojiFirebase($rootScope, $firebaseAuth, $firebaseObject){
-        var eggmojiFirebase = this;
+  'use strict';
+  app.service('eggmojiFirebase', ['$rootScope', '$location', '$firebaseAuth', '$firebaseObject', function EggmojiFirebase($rootScope, $location, $firebaseAuth, $firebaseObject){
+    var eggmojiFirebase = this;
 
-        var config = {
-            apiKey: "",
-            authDomain: "",
-            databaseURL: "",
-            storageBucket: ""
-        };
+    var config = {
+      apiKey: "",
+      authDomain: "",
+      databaseURL: "",
+      storageBucket: ""
+    };
 
-        firebase.initializeApp(config);
-        var auth = firebase.auth();
+    firebase.initializeApp(config);
+    var auth = firebase.auth();
 
-        var provider = new firebase.auth.GoogleAuthProvider();
-        auth.signInWithPopup(provider).then(function(result) {
-            var uid = result.user.uid;
-        }).catch(function(error) {
-            // An error occurred
-        });
+    var db = firebase.database();
+    var ref = db.ref('eggmojis');
 
-        var db = firebase.database();
-        var ref = db.ref('eggmojis');
+    eggmojiFirebase.login = function() {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      if( auth.currentUser === null ){
+        auth.signInWithRedirect(provider);
+      } else {
+        $location.path('/eggmojis');
+      }
+    };
 
-        ref.on('value', function(snapshot) {
-          eggmojiFirebase.eggmojis = snapshot.val();
-          $rootScope.$emit('eggmojisUpdated');
-        });
+    firebase.auth().getRedirectResult().then(function(result) {
+      $location.path('/eggmojis');
+    }).catch(function(error) {
+      console.log(error);
+    });
 
-        eggmojiFirebase.addEggmoji = function(eggmojiToAdd) {
-          ref.push(eggmojiToAdd);
-        };
+    eggmojiFirebase.getUser = function() {
+      console.log(auth.currentUser);
+      return auth.currentUser;
+    };
 
-        eggmojiFirebase.deleteEggmoji = function(eggmojiId) {
-          ref.child(eggmojiId).remove();
-        };
+    ref.on('value', function(snapshot) {
+      eggmojiFirebase.eggmojis = snapshot.val();
+      $rootScope.$emit('eggmojisUpdated');
+    });
 
-        eggmojiFirebase.updateEggmoji = function(eggmojiId, eggmoji) {
-          ref.child(eggmojiId).update(eggmoji);
-        };
-    }]);
+    eggmojiFirebase.addEggmoji = function(eggmojiToAdd) {
+      ref.push(eggmojiToAdd);
+    };
+
+    eggmojiFirebase.deleteEggmoji = function(eggmojiId) {
+      ref.child(eggmojiId).remove();
+    };
+
+    eggmojiFirebase.updateEggmoji = function(eggmojiId, eggmoji) {
+      ref.child(eggmojiId).update(eggmoji);
+    };
+  }]);
 })();
