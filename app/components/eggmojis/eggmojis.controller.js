@@ -58,6 +58,9 @@
       if( typeof $scope.selectedEggmoji === 'undefined' )
         $scope.selectedEggmoji.pictures = [];
 
+      if( typeof $scope.selectedEggmoji.pictures === 'undefined' )
+        $scope.selectedEggmoji.pictures = [];
+
       var toAdd = 'data:' + fileObjects[0].filetype + ';base64,' + fileObjects[0].base64;
       $scope.selectedEggmoji.pictures.push(toAdd);
       $scope.selectedEggmoji.currentPicture = $scope.selectedEggmoji.pictures.length - 1;
