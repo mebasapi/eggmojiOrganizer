@@ -8,13 +8,20 @@ var app = angular.module('eggmojiOrganizer', [
     'naif.base64'
 ]);
 
+app.constant('creds', {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    storageBucket: ""
+});
+
 app.config(function($routeProvider, $locationProvider) {
   $routeProvider
-  .when('/eggmojis', {
+  .when('/', {
     templateUrl: 'components/eggmojis/eggmojis.html',
     controller: 'eggmojisCntl'
   })
   .otherwise({
-    redirectTo:'/eggmojis'
+    redirectTo:'/'
   });
 });

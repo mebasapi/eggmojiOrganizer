@@ -1,11 +1,11 @@
-<div ng-if="!user" class="login-container">
+<div ng-if="user === null" class="login-container">
   <a ng-click="login()" class="btn-large login">Log In</a>
   <p ng-if="loggingIn">
     ... logging in...
   </p>
 </div>
 
-<div id="eggmojis-nav" ng-if="user">
+<div id="eggmojis-nav" ng-if="user !== null">
   <a ng-class="{ 'active': pageStatus === 'unstarted' }" ng-click="updatePageStatus('unstarted')">Unstarted</a>
   <a ng-class="{ 'active': pageStatus === 'inprogress' }" ng-click="updatePageStatus('inprogress')">In Progress</a>
   <a ng-class="{ 'active': pageStatus === 'completed' }" ng-click="updatePageStatus('completed')">Completed</a>
@@ -46,7 +46,7 @@
       </div>
       <div class="description-container">
         <label>Description</label>
-        <textarea ng-model="selectedEggmoji.description"></textarea>
+        <textarea ng-model="selectedEggmoji.description" ng-blur="updateEggmoji(selectedEggmojiId, selectedEggmoji)"></textarea>
       </div>
 
       <div class="buttons">
@@ -65,7 +65,7 @@
   </eggmoji-card>
 </div>
 
-<a ng-click="newEggmojiClicked()" class="btn-floating btn-large waves-effect waves-light red add fab"><i class="material-icons">add</i></a>
+<a ng-click="newEggmojiClicked()"  ng-if="user !== null" class="btn-floating btn-large waves-effect waves-light red add fab"><i class="material-icons">add</i></a>
 
 <div id="overlay" ng-show="viewOverlayPicture">
   <div id="blackbg" ng-click="overlayClicked()"></div>

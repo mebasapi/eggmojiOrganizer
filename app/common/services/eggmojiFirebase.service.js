@@ -1,15 +1,16 @@
 (function() {
   'use strict';
-  app.service('eggmojiFirebase', ['$rootScope', '$location', '$firebaseAuth', '$firebaseObject', function EggmojiFirebase($rootScope, $location, $firebaseAuth, $firebaseObject){
+  app.service('eggmojiFirebase', ['$rootScope', '$location', '$firebaseAuth', '$firebaseObject', 'creds', function EggmojiFirebase($rootScope, $location, $firebaseAuth, $firebaseObject, creds){
     var eggmojiFirebase = this;
 
     var config = {
-      apiKey: "",
-      authDomain: "",
-      databaseURL: "",
-      storageBucket: ""
+      apiKey: creds.apiKey,
+      authDomain: creds.authDomain,
+      databaseURL: creds.databaseURL,
+      storageBucket: creds.storageBucket
     };
 
+    var user = {};
     firebase.initializeApp(config);
     var auth = firebase.auth();
 
@@ -18,22 +19,27 @@
 
     eggmojiFirebase.login = function() {
       var provider = new firebase.auth.GoogleAuthProvider();
-      if( auth.currentUser === null ){
+      if( user === null ){
         auth.signInWithRedirect(provider);
       } else {
-        $location.path('/eggmojis');
+        $location.path('/');
       }
     };
 
     firebase.auth().getRedirectResult().then(function(result) {
-      $location.path('/eggmojis');
+      user = auth.currentUser;
+      $rootScope.$apply();
     }).catch(function(error) {
       console.log(error);
     });
 
+    // firebase.auth().onAuthStateChanged(user, function(error) {
+    //   console.log(error);
+    // });
+
     eggmojiFirebase.getUser = function() {
-      console.log(auth.currentUser);
-      return auth.currentUser;
+      user = auth.currentUser;
+      return user;
     };
 
     ref.on('value', function(snapshot) {

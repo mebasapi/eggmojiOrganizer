@@ -110,7 +110,6 @@
     });
 
     function init() {
-      console.log('balls');
       $scope.user = eggmojiFirebase.getUser();
       console.log($scope.user);
 

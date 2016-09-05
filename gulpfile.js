@@ -101,6 +101,11 @@ gulp.task('views', ['clean'], function() {
     gulp.src('app/**/*.html')
         // Will be put in the dist/views folder
         .pipe(gulp.dest('dist/'));
+
+    gulp.src('app/img/*')
+        // Will be put in the dist/views folder
+        .pipe(gulp.dest('dist/img'));
+
 });
 
 // Views task
