@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  app.controller('eggmojisCntl', ['$scope', '$rootScope', '$timeout', 'eggmojiFirebase', function($scope, $rootScope, $timeout, eggmojiFirebase) {
+  app.controller('eggmojisCntl', ['$scope', '$rootScope', '$timeout', '$window', 'eggmojiFirebase', function($scope, $rootScope, $timeout, $window, eggmojiFirebase) {
     $scope.login = function() {
       $scope.loggingIn = true;
 
@@ -108,6 +108,9 @@
     });
 
     $rootScope.$on('eggmojiSelected', function() {
+      $window.scrollTo(0, 80);  
+
+      $scope.showSaveButton = false;
       $scope.selectedEggmojiId = $rootScope.selectedEggmojiId;
       $scope.selectedEggmoji = $rootScope.selectedEggmoji;
     });

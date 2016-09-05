@@ -13,7 +13,7 @@
 
 <div class="eggmojis-container"  ng-if="user">
 
-  <div class="selected-eggmoji" ng-if="selectedEggmojiId !== ''">
+  <div id="test" class="selected-eggmoji" ng-if="selectedEggmojiId !== ''">
     <div class="left">
       <input ng-model="selectedEggmoji.title" ng-blur="updateEggmoji(selectedEggmojiId, selectedEggmoji)"></input>
       <a class="close-button" ng-click="clearSelectedEggmoji()"><img src="/img/close.png"/></a>
