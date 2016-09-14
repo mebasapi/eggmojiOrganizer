@@ -123,7 +123,7 @@ gulp.task('js', ['clean'], function() {
     gulp.src('app/bower_components/**/*.js').pipe(gulp.dest('dist/bower_components'));
 });
 
-gulp.task('watch', ['lint'], function() {
+gulp.task('watch', ['dev'], function() {
     // Start webserver
     server.listen(serverport);
     // Start live reload

@@ -23,8 +23,8 @@
         <a ng-class="{ 'active': pageStatus === 'completed' }" ng-click="updateStatus('completed')">Completed</a>
       </div>
 
-      <div class="current-picture-container" ng-class="{'empty': selectedEggmoji.currentPicture < 0}">
-        <img ng-if="selectedEggmoji.currentPicture >= 0" ng-src="{{selectedEggmoji.pictures[selectedEggmoji.currentPicture]}}"/>
+      <div class="current-picture-container" ng-class="{'empty': selectedEggmoji.currentPicture == -1}">
+        <img ng-if="selectedEggmoji.currentPicture != -1" ng-src="{{selectedEggmoji.currentPicture}}" />
       </div>
     </div>
 
@@ -32,7 +32,7 @@
 
       <div class="pictures-container">
         <div class="picture" ng-repeat="picture in selectedEggmoji.pictures | orderBy:'$index':true track by $index ">
-          <img ng-src="{{picture}}" ng-click="pictureClicked(selectedEggmoji.pictures.length - $index - 1)"/>
+          <img ng-src="{{picture}}" ng-click="pictureClicked(picture)"/>
         </div>
         <input
           type="file"
@@ -50,6 +50,7 @@
       </div>
 
       <div class="buttons">
+        <!-- <a class="update-pictures" ng-click="updateEggmojiPictures(selectedEggmojiId, selectedEggmoji)">Update Pictures</a> -->
         <!-- <a class="delete-eggmoji" ng-click="deleteEggmoji(selectedEggmojiId)" ng-if="!showSaveButton">Delete</a> -->
         <a class="save-emoji" ng-click="addEggmoji(selectedEggmoji)" ng-if="showSaveButton">Save</a>
       </div>
@@ -58,9 +59,9 @@
 
   <eggmoji-card
     status="pageStatus"
-    data-id="id"
+    data-id="eggmoji.$id"
     data-eggmoji="eggmoji"
-    ng-repeat="(id, eggmoji) in eggmojis"
+    ng-repeat="eggmoji in eggmojis"
     ng-if="eggmoji.status === pageStatus">
   </eggmoji-card>
 </div>
